@@ -1,0 +1,32 @@
+@keyframes grow-input {
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 400px;
+  }
+}
+
+// .url-input {
+//   view-timeline-name: --inputUrl;
+//   view-timeline-axis: block;
+
+//   animation-timeline: --inputUrl;
+//   animation-name: grow-input;
+
+//   animation-range: entry 0% cover 20%;
+// }
+
+// .url-input {
+//   animation: grow-input 1.5s ease-in-out forwards;
+// }
+
+.url-input {
+  width: 0px; /* Estado inicial */
+  transition: width 1.5s ease-in-out; /* Transición suave para el ancho */
+}
+
+.url-input.animate {
+  animation: grow-input 1.5s forwards; /* Aplica la animación */
+}
