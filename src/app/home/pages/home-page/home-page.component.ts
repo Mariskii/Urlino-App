@@ -18,6 +18,6 @@ export class HomePageComponent {
   features: string[] = [
     'Generate a shortern Url Free',
     'Save your urls creating an account',
-    'Login with your Github or Googel account'
+    'Login with your Github'
   ];
 }

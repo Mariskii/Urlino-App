@@ -1,6 +1,6 @@
 <section class="flex flex-col items-center w-full p-5 bg-white">
 
-  <div class="p-5 text-center text-black">
+  <div class="p-5 text-center">
     <h2 class="font-bold text-3xl p-5">How to shortern your URL?</h2>
     <h3 class="text-xl">Simply paste your long URL into the input box and click "Shorten". You'll get a short link in seconds.</h3>
   </div>
@@ -8,11 +8,36 @@
   <div class="w-fit flex justify-around items-center rounded-2xl p-2 m-3 border border-gray-400">
     <input
       #longURLInput
+      [(ngModel)]="longUrl"
       placeholder="https://your-long-url-here.com"
       id="longURL"
-      class="h-full w-4/5 text-xl url-input border-none focus:outline-none"
+      class="h-full w-4/5 text-xl mr-2 url-input border-none focus:outline-none"
       type="text">
 
-    <button class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Shortern</button>
+    <button
+      (click)="getShortUrl()"
+      class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Shortern</button>
   </div>
+
+  @if (loading) {
+    <div class="flex flex-col items-center w-full p-5">
+      <p class="text-xl">Shortening your Url...</p>
+      <mat-progress-bar class="w-full" mode="indeterminate"/>
+    </div>
+  }
+
+  @if (shortUrl) {
+    <div class="text-xl p-4">
+      <p class="mb-2">Your newly shortened URL:</p>
+      <div class="flex items-center w-[500px] h-[45px] p-2 justify-between border border-gray-400 rounded-2xl">
+        <p>{{ shortUrl }}</p>
+        <button
+          class="flex items-center"
+          [cdkCopyToClipboard]="shortUrl"
+          matTooltip="Copy">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+    </div>
+  }
 </section>
