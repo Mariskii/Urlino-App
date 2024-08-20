@@ -28,7 +28,7 @@ export class ShorternUrlComponent implements AfterViewInit {
   @ViewChild('longURLInput')
   longURLInput!: ElementRef;
 
-  longUrl?:string = 'https://www.youtube.com/watch?v=C1c4FNPWu4A';
+  longUrl?:string;
   shortUrl?: string;
   loading: boolean = false;
 
