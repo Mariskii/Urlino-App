@@ -1,8 +1,24 @@
 <nav class="sticky top-0 h-fit w-full flex justify-between p-5 backdrop-blur-md z-10">
   <img ngSrc="../../../../assets/URLINO.png" width="150" height="75" priority alt="urlino_logo">
 
+  <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3">login</a>
 
-  <button class="p-3 bg-gray-950 rounded-full text-white max-h-[60px]" aria-label="Example icon-button with share icon">
+  @if(!authService.user) {
+    <button
+      (click)="login()"
+      class="p-3 bg-gray-950 rounded-full text-white max-h-[60px]" aria-label="Example icon-button with share icon">
     Login with Github
   </button>
+  } @else {
+    <div class="flex font-bold items-center space-x-3">
+      <p>{{ authService.user.name }}</p>
+      <img
+        class="rounded-full"
+        width="60"
+        height="60"
+        priority
+        [ngSrc]="authService.user.imageUrl"
+        alt="user_image">
+    </div>
+  }
 </nav>

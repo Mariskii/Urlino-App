@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NgOptimizedImage } from '@angular/common';
+import { AuthService } from '../../../core/services/AuthService/auth.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,4 +18,28 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class ToolbarComponent {
 
+  authService = inject(AuthService);
+
+  login() {
+    //window.location.href = "https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
+    this.authService.login().subscribe(user => {
+      console.log(user);
+
+      this.authService.user = {
+        id: user.id,
+        imageUrl: user.avatar_url,
+        name: user.login
+      }
+
+      console.log(this.authService.user);
+    })
+  }
+
+  user () {
+    window.location.href = "https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
+    // this.authService.getUser().subscribe(res => {
+    //   console.log(res);
+
+    // })
+  }
 }
