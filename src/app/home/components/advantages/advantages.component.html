@@ -1,0 +1,9 @@
+<article>
+  <h2 class="text-3xl text-white font-bold text-center p-5">Why to use shortened Urls?</h2>
+
+  <div class="flex flex-wrap justify-center p-2">
+    @for (item of advantagCardItems; track $index) {
+      <app-advantage-card class="w-1/3 m-2" [advantage]="item"/>
+    }
+  </div>
+</article>

@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { ShorternUrlComponent } from '../../components/shortern-url/shortern-url.component';
+import { AdvantagesComponent } from '../../components/advantages/advantages.component';
 
 @Component({
   selector: 'app-home-page',
@@ -10,6 +11,7 @@ import { ShorternUrlComponent } from '../../components/shortern-url/shortern-url
     NgOptimizedImage,
     MatIconModule,
     ShorternUrlComponent,
+    AdvantagesComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
