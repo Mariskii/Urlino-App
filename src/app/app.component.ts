@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ToolbarComponent } from './Shared/components/toolbar/toolbar.component';
+import { FooterComponent } from './Shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { ToolbarComponent } from './Shared/components/toolbar/toolbar.component'
   imports: [
     RouterOutlet,
     ToolbarComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
