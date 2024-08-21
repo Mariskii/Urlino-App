@@ -3,7 +3,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthService } from '../../../core/services/AuthService/auth.service';
-import { environment } from '../../../../environments/environment.development';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment.development';
     MatToolbarModule,
     MatIconModule,
     NgOptimizedImage,
+    RouterModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
@@ -19,6 +20,17 @@ import { environment } from '../../../../environments/environment.development';
 export class ToolbarComponent {
 
   authService = inject(AuthService);
+
+  navItems = [
+    {
+      title: 'Home',
+      router: '/home'
+    },
+    {
+      title: 'My Urls',
+      router: '/user'
+    }
+  ];
 
   login() {
     //window.location.href = "https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"

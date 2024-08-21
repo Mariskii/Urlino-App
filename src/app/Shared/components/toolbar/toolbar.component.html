@@ -10,6 +10,16 @@
     Login with Github
   </button>
   } @else {
+
+    <ul class="flex items-center gap-3 font-bold">
+      @for (item of navItems; track $index) {
+        <li
+        [routerLink]="item.router"
+        routerLinkActive="bg-red-500 "
+        class="text-3xl">{{ item.title }}</li>
+      }
+    </ul>
+
     <div class="flex font-bold items-center space-x-3">
       <p>{{ authService.user.name }}</p>
       <img

@@ -1,0 +1,41 @@
+<div class="bg-gray-500 w-full">
+  <h2 class="w-full text-center text-5xl font-bold p-10">Welcome back {{ authService.user?.name }}!</h2>
+
+  <h3 class="text-center text-3xl">Want to create a custom url?</h3>
+  <div class="w-full p-10 flex flex-col justify-center items-center gap-3">
+    <input
+      [(ngModel)]="longUrl"
+      placeholder="link here"
+      type="text">
+
+    <div class="border border-red-600 p-2 m-2 w-fit rounded-lg">
+      <span class="font-bold mr-1">http://localhost:8080/api/</span>
+      <input
+        [(ngModel)]="customBody"
+        class="p-1"
+        placeholder="body of url"
+        type="text">
+    </div>
+
+    <button
+      (click)="shortCustomizedUrl()">Acortas</button>
+
+  </div>
+
+  <div class="w-full min-h-[500px]">
+    <h3 class="text-3xl text-center font-bold p-5">My Urls</h3>
+    @if (userUrls.length > 0) {
+      <div class="grid grid-cols-2 gap-1">
+        @for (userUrl of userUrls; track $index) {
+          <app-url-card [urlUser]="userUrl"/>
+        }
+      </div>
+    } @else {
+      <div class="flex flex-col gap-2 justify-center items-center p-10">
+        <img ngSrc="../../../../assets/no-content.png" width="250" height="250" priority alt="no_urls_image">
+        <p class="text-2xl">You dont have any url registered...</p>
+      </div>
+    }
+  </div>
+
+</div>

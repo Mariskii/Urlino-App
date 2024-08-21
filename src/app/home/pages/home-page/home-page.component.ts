@@ -20,7 +20,7 @@ import { catchError, of } from 'rxjs';
 })
 export class HomePageComponent {
 
-  authService = inject(AuthService);
+//  authService = inject(AuthService);
 
   features: string[] = [
     'Generate a shortern Url Free',
@@ -28,22 +28,18 @@ export class HomePageComponent {
     'Login with your Github account'
   ];
 
-  ngOnInit(): void {
-    this.authService.login().pipe(
-      catchError(err => {
-        //console.log(err);
-        return of()
-      })
-    ).subscribe(user => {
-      this.authService.user = {
-        id: user.id,
-        imageUrl: user.avatar_url,
-        name: user.login
-      }
-
-      console.log(user);
-      console.log(this.authService.user);
-
-    });
-  }
+  // ngOnInit(): void {
+  //   this.authService.login().pipe(
+  //     catchError(err => {
+  //       //console.log(err);
+  //       return of()
+  //     })
+  //   ).subscribe(user => {
+  //     this.authService.user = {
+  //       id: user.id,
+  //       imageUrl: user.avatar_url,
+  //       name: user.login
+  //     }
+  //   });
+  // }
 }
