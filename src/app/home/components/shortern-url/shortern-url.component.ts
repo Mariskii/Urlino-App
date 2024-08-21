@@ -76,6 +76,8 @@ export class ShorternUrlComponent implements AfterViewInit {
       ).subscribe(resp => {
         this.shortUrl = environment.API_URL+"/api/"+resp.shortUrl;
         this.loading = false
+        this.errorMessage='';
+        this.longUrl = '';
       });
     }
   }

@@ -46,7 +46,8 @@ export class UserPageComponent implements OnInit {
 
   totalUrls: number = 0;
 
-  loading: boolean = false;
+  loadingUrl: boolean = false;
+  loadingUserUrl: boolean = false;
 
   shortUrl?: string;
 
@@ -65,10 +66,10 @@ export class UserPageComponent implements OnInit {
         userId: this.authService.user!.id
       }
 
-      this.loading = true
+      this.loadingUrl = true
       this.urlService.shortenCustomizedUrl(customUrl).pipe(
         catchError(err => {
-          this.loading = false;
+          this.loadingUrl = false;
           this.errorMessage = err.error.message;
           return of();
         })
@@ -78,7 +79,7 @@ export class UserPageComponent implements OnInit {
 
         this.totalUrls++;
 
-        this.loading = false;
+        this.loadingUrl = false;
         this.shortUrl = 'http:localhost:8080/api/'+resp.customUrl
         this.resetText();
       });
@@ -86,9 +87,16 @@ export class UserPageComponent implements OnInit {
   }
 
   getUrlsByUserId(page: number) {
-    this.urlService.getUrlsByUserId(page).pipe().subscribe(urlsPage => {
+    this.loadingUserUrl = true;
+    this.urlService.getUrlsByUserId(page).pipe(
+      catchError(err => {
+        this.loadingUserUrl = false;
+        return of();
+      })
+    ).subscribe(urlsPage => {
       this.userUrls = urlsPage.content;
       this.totalUrls = urlsPage.totalElements;
+      this.loadingUserUrl = false;
     });
   }
 
