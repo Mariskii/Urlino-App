@@ -7,12 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { environment } from '../../../../environments/environment.development';
+import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-shortern-url',
   standalone: true,
   imports: [
     FormsModule,
+    LoaderComponent,
     ClipboardModule,
     MatIconModule,
     MatTooltipModule,

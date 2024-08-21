@@ -11,6 +11,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatIconModule } from '@angular/material/icon';
+import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-user-page',
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     NgOptimizedImage,
     UrlCardComponent,
+    LoaderComponent,
     MatDialogModule,
     MatPaginatorModule,
     MatProgressBarModule,
