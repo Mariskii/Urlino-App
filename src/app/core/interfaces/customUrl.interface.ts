@@ -6,7 +6,7 @@ export interface CustomUrlResponse {
 
 export interface CustomUrlRequest {
   longUrl: string,
-  customBody: string,
+  customBody?: string,
   userId: string,
 }
 

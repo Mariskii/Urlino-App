@@ -8,6 +8,9 @@ import { UrlCardComponent } from '../../components/url-card/url-card.component';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-page',
@@ -18,6 +21,9 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     UrlCardComponent,
     MatDialogModule,
     MatPaginatorModule,
+    MatProgressBarModule,
+    ClipboardModule,
+    MatIconModule,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
@@ -33,9 +39,13 @@ export class UserPageComponent implements OnInit {
   longUrl?: string;
   customBody?: string;
 
-  shearchedUrl?: string;
+  searchedUrl?: string;
 
   totalUrls: number = 0;
+
+  loading: boolean = false;
+
+  shortUrl?: string;
 
   ngOnInit(): void {
     this.getUrlsByUserId(0);
@@ -43,18 +53,22 @@ export class UserPageComponent implements OnInit {
 
   shortCustomizedUrl() {
 
-    if(this.longUrl && this.customBody) {
+    if(this.longUrl) {
       const customUrl: CustomUrlRequest = {
         customBody: this.customBody,
         longUrl: this.longUrl,
         userId: this.authService.user!.id
       }
 
+      this.loading = true
       this.urlService.shortenCustomizedUrl(customUrl).pipe().subscribe(resp => {
         if(this.userUrls.length < 10)
           this.userUrls.push(resp);
 
         this.totalUrls++;
+
+        this.loading = false;
+        this.shortUrl = 'http:localhost:8080/api/'+resp.customUrl
       });
     }
   }
@@ -81,16 +95,15 @@ export class UserPageComponent implements OnInit {
           this.urlService.deleteUrlById(id).pipe().subscribe(() => {
             const index = this.userUrls.findIndex(url => url.id === id)
             this.userUrls.splice(index, 1);
+            this.totalUrls--;
           });
         }
       });
   }
 
-  search() {
-    if(this.shearchedUrl) {
-      console.log(this.shearchedUrl);
-
-      this.urlService.getUrlsByUserIdAndShortUrl(0,this.shearchedUrl).subscribe(res => {
+  searchByShortUrl() {
+    if(this.searchedUrl) {
+      this.urlService.getUrlsByUserIdAndShortUrl(0,this.searchedUrl).subscribe(res => {
         this.userUrls = res.content
         this.totalUrls = res.totalElements
       })

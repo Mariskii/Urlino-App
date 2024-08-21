@@ -1,41 +1,71 @@
 <div class="w-full">
-  <h2 class="w-full text-center text-5xl font-bold p-10">Welcome back {{ authService.user?.name }}!</h2>
+  <h2 class="w-full text-center text-5xl font-bold p-10 text-white">Welcome back {{ authService.user?.name }}!</h2>
 
-  <h3 class="text-center text-3xl">Want to create a custom url?</h3>
+  <h3 class="text-center text-3xl text-gray-300">Want to create a custom url?</h3>
   <div class="w-full p-10 flex flex-col justify-center items-center gap-3">
 
-    <div class="bg-white border-2 border-red-600 p-2 m-2 w-3/4 rounded-lg">
+    <div class="bg-white border-2 border-gray-400 p-2 m-2 w-3/4 rounded-lg">
       <input
-        class="w-full focus:outline-none"
+        class="p-1 w-full focus:outline-none"
         [(ngModel)]="longUrl"
-        placeholder="link here"
+        placeholder="https://your-long-url-here.com"
         type="text">
     </div>
 
-    <div class="bg-white border-2 border-red-600 p-2 m-2 w-3/4 rounded-lg">
+    <div class="bg-white border-2 border-gray-400 p-2 m-2 w-3/4 rounded-lg">
       <span class="font-bold mr-1">http://localhost:8080/api/</span>
       <input
         [(ngModel)]="customBody"
         class="p-1 focus:outline-none"
-        placeholder="body of url"
+        placeholder="custom/body/here"
         type="text">
     </div>
 
     <button
       (click)="shortCustomizedUrl()">Acortas</button>
 
+      @if (loading) {
+        <div class="flex flex-col items-center w-full p-5">
+          <p class="text-xl">Shortening your Url...</p>
+          <mat-progress-bar class="w-full" mode="indeterminate"/>
+        </div>
+      }
+
+      @if (shortUrl) {
+        <div class="text-xl p-4">
+          <div class="flex items-center w-[500px] h-[45px] p-2 justify-between border-1 border-gray-400 bg-white rounded-2xl">
+            <p>{{ shortUrl }}</p>
+            <button
+              class="flex items-center"
+              [cdkCopyToClipboard]="shortUrl"
+              matTooltip="Copy">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </div>
+      }
+
   </div>
 
-  <h3 class="text-3xl text-center font-bold p-5">My Urls</h3>
-  <div class="w-full min-h-[800px] flex flex-col justify-between">
-    <input
-        placeholder="search by short url..."
-        class="w-3/4 m-4 p-2"
-        [(ngModel)] = "shearchedUrl"/>
-      <button (click)="search()">buscar</button>
+  <h3 class="text-4xl text-center font-bold p-5 text-white">My Urls ({{ totalUrls }} stored)</h3>
+  <div class="w-full min-h-[800px] flex flex-col items-center">
+
+    <div class="w-3/4 flex justify-between items-center rounded-2xl p-2 border-2 border-gray-400 bg-white mb-14">
+      <input
+        [(ngModel)]="searchedUrl"
+        placeholder="Search by short url"
+        id="longURL"
+        class="w-3/4 h-full text-xl mr-2 url-input border-none focus:outline-none"
+        type="text">
+
+      <button
+        (click)="searchByShortUrl()"
+        class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Search</button>
+    </div>
+
     @if (userUrls.length > 0) {
 
-      <div class="grid grid-cols-2 gap-1">
+      <div class="w-full grid grid-cols-2 gap-1">
         @for (userUrl of userUrls; track $index) {
           <app-url-card
             (deleteUrl)="showDeleteConfirmation($event)"
@@ -44,7 +74,7 @@
       </div>
 
       <mat-paginator
-        class="bottom-1"
+        class="w-full font-bold  mt-auto"
         [length]="totalUrls"
         [pageSize]="10"
         (page)="changePage($event)"
@@ -53,7 +83,7 @@
     } @else {
       <div class="flex flex-col gap-2 justify-center items-center p-10">
         <img ngSrc="../../../../assets/no-content.png" width="250" height="250" priority alt="no_urls_image">
-        <p class="text-2xl">You dont have any url registered...</p>
+        <p class="text-2xl text-white">You dont have any url registered...</p>
       </div>
     }
   </div>
