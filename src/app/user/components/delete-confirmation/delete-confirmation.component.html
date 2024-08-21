@@ -1,0 +1,19 @@
+<p
+  class="text-center font-bold text-2xl p-4"
+  mat-dialog-title>Delete url</p>
+<div mat-dialog-content>
+    <p class="p-5">{{mensaje}}</p>
+</div>
+<div
+  class="w-full flex justify-around p-3 font-bold"
+  mat-dialog-actions>
+    <button
+      class="w-1/4 border border-blue-500 p-3 rounded-xl hover:bg-gray-200"
+      mat-button
+      (click)="closeDialog()">No</button>
+    <button
+      class="w-1/4 bg-blue-500 text-white hover:bg-blue-700 p-3 rounded-xl"
+      mat-button
+      (click)="confirmation()"
+      cdkFocusInitial>Yes</button>
+</div>

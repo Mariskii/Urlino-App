@@ -27,7 +27,9 @@
     @if (userUrls.length > 0) {
       <div class="grid grid-cols-2 gap-1">
         @for (userUrl of userUrls; track $index) {
-          <app-url-card [urlUser]="userUrl"/>
+          <app-url-card
+            (deleteUrl)="showDeleteConfirmation($event)"
+            [urlUser]="userUrl"/>
         }
       </div>
     } @else {

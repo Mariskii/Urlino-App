@@ -28,4 +28,9 @@ export class UrlService {
 
     return this.http.get<CustomUrlPage>(`${environment.API_URL}/api/user-urls`, { params, withCredentials: true });
   }
+
+  deleteUrlById(urlId: string) {
+    const params = new HttpParams().set('id', urlId);
+    return this.http.delete(`${environment.API_URL}/api/delete-by-id`,{ params, withCredentials: true });
+  }
 }

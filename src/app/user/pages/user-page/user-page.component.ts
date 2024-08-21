@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/AuthService/auth.service';
-import { UserUrl } from '../../../core/interfaces/userUrl.interface';
 import { NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UrlService } from '../../../core/services/url.service';
 import { CustomUrlRequest, CustomUrlResponse } from '../../../core/interfaces/customUrl.interface';
 import { UrlCardComponent } from '../../components/url-card/url-card.component';
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-page',
@@ -14,6 +16,8 @@ import { UrlCardComponent } from '../../components/url-card/url-card.component';
     FormsModule,
     NgOptimizedImage,
     UrlCardComponent,
+    MatDialogModule,
+    MatPaginatorModule,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
@@ -22,6 +26,7 @@ export class UserPageComponent implements OnInit {
 
   authService = inject(AuthService);
   urlService = inject(UrlService);
+  dialogConfirmation = inject(MatDialog);
 
   userUrls:CustomUrlResponse[] = [];
 
@@ -42,7 +47,8 @@ export class UserPageComponent implements OnInit {
       }
 
       this.urlService.shortenCustomizedUrl(customUrl).pipe().subscribe(resp => {
-        this.userUrls.push(resp);
+        if(this.userUrls.length < 10)
+          this.userUrls.push(resp);
       });
     }
   }
@@ -51,5 +57,21 @@ export class UserPageComponent implements OnInit {
     this.urlService.getUrlsByUserId(0).pipe().subscribe(urlsPage => {
       this.userUrls = urlsPage.content;
     });
+  }
+
+  showDeleteConfirmation(id: string): void {
+    this.dialogConfirmation
+      .open(DeleteConfirmationComponent, {
+        data: `Are you sure you want to delete the url?`
+      })
+      .afterClosed()
+      .subscribe((confirmed: Boolean) => {
+        if (confirmed) {
+          this.urlService.deleteUrlById(id).pipe().subscribe(() => {
+            const index = this.userUrls.findIndex(url => url.id === id)
+            this.userUrls.splice(index, 1);
+          });
+        }
+      });
   }
 }
