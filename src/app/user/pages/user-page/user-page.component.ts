@@ -12,6 +12,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
@@ -49,6 +50,8 @@ export class UserPageComponent implements OnInit {
 
   shortUrl?: string;
 
+  errorMessage?: string;
+
   ngOnInit(): void {
     this.getUrlsByUserId(0);
   }
@@ -63,7 +66,13 @@ export class UserPageComponent implements OnInit {
       }
 
       this.loading = true
-      this.urlService.shortenCustomizedUrl(customUrl).pipe().subscribe(resp => {
+      this.urlService.shortenCustomizedUrl(customUrl).pipe(
+        catchError(err => {
+          this.loading = false;
+          this.errorMessage = err.error.message;
+          return of();
+        })
+      ).subscribe(resp => {
         if(this.userUrls.length < 10)
           this.userUrls.push(resp);
 
@@ -71,6 +80,7 @@ export class UserPageComponent implements OnInit {
 
         this.loading = false;
         this.shortUrl = 'http:localhost:8080/api/'+resp.customUrl
+        this.resetText();
       });
     }
   }
@@ -110,5 +120,10 @@ export class UserPageComponent implements OnInit {
         this.totalUrls = res.totalElements
       })
     }
+  }
+
+  resetText() {
+    this.errorMessage = '';
+    this.longUrl = '';
   }
 }

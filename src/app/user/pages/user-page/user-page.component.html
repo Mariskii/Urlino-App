@@ -4,6 +4,9 @@
   <h3 class="text-center text-3xl text-gray-300">Want to create a custom url?</h3>
   <div class="w-full p-10 flex flex-col justify-center items-center gap-3">
 
+    @if (errorMessage) {
+      <p class="text-red-500 text-xl">{{ errorMessage }}</p>
+    }
     <div class="bg-white border-2 border-gray-400 p-2 m-2 w-3/4 rounded-lg">
       <input
         class="p-1 w-full focus:outline-none"

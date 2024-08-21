@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { environment } from '../../../../environments/environment.development';
 import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-shortern-url',
@@ -32,6 +33,7 @@ export class ShorternUrlComponent implements AfterViewInit {
 
   longUrl?:string;
   shortUrl?: string;
+  errorMessage?: string;
   loading: boolean = false;
 
   ngAfterViewInit() {
@@ -65,7 +67,13 @@ export class ShorternUrlComponent implements AfterViewInit {
 
     if(this.longUrl) {
       this.loading = true
-      this.urlService.shorterUrl(this.longUrl).pipe().subscribe(resp => {
+      this.urlService.shorterUrl(this.longUrl).pipe(
+        catchError(err => {
+          this.loading = false;
+          this.errorMessage = err.error.message;
+          return of()
+        })
+      ).subscribe(resp => {
         this.shortUrl = environment.API_URL+"/api/"+resp.shortUrl;
         this.loading = false
       });
