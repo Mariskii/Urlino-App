@@ -7,7 +7,7 @@ import { CustomUrlRequest, CustomUrlResponse } from '../../../core/interfaces/cu
 import { UrlCardComponent } from '../../components/url-card/url-card.component';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-page',
@@ -33,8 +33,10 @@ export class UserPageComponent implements OnInit {
   longUrl?: string;
   customBody?: string;
 
+  totalUrls?: number;
+
   ngOnInit(): void {
-    this.getUrlsByUserId();
+    this.getUrlsByUserId(0);
   }
 
   shortCustomizedUrl() {
@@ -53,10 +55,15 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  getUrlsByUserId() {
-    this.urlService.getUrlsByUserId(0).pipe().subscribe(urlsPage => {
+  getUrlsByUserId(page: number) {
+    this.urlService.getUrlsByUserId(page).pipe().subscribe(urlsPage => {
       this.userUrls = urlsPage.content;
+      this.totalUrls = urlsPage.totalElements;
     });
+  }
+
+  changePage(event: PageEvent) {
+    this.getUrlsByUserId(event.pageIndex)
   }
 
   showDeleteConfirmation(id: string): void {

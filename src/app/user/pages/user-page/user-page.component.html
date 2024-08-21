@@ -22,8 +22,8 @@
 
   </div>
 
-  <div class="w-full min-h-[500px]">
-    <h3 class="text-3xl text-center font-bold p-5">My Urls</h3>
+  <h3 class="text-3xl text-center font-bold p-5">My Urls</h3>
+  <div class="w-full min-h-[800px] flex flex-col justify-between">
     @if (userUrls.length > 0) {
       <div class="grid grid-cols-2 gap-1">
         @for (userUrl of userUrls; track $index) {
@@ -32,6 +32,14 @@
             [urlUser]="userUrl"/>
         }
       </div>
+
+      <mat-paginator
+        class="bottom-1"
+        [length]="totalUrls"
+        [pageSize]="10"
+        (page)="changePage($event)"
+        aria-label="Select page">
+      </mat-paginator>
     } @else {
       <div class="flex flex-col gap-2 justify-center items-center p-10">
         <img ngSrc="../../../../assets/no-content.png" width="250" height="250" priority alt="no_urls_image">
