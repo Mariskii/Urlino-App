@@ -1,18 +1,22 @@
-<div class="bg-gray-500 w-full">
+<div class="w-full">
   <h2 class="w-full text-center text-5xl font-bold p-10">Welcome back {{ authService.user?.name }}!</h2>
 
   <h3 class="text-center text-3xl">Want to create a custom url?</h3>
   <div class="w-full p-10 flex flex-col justify-center items-center gap-3">
-    <input
-      [(ngModel)]="longUrl"
-      placeholder="link here"
-      type="text">
 
-    <div class="border border-red-600 p-2 m-2 w-fit rounded-lg">
+    <div class="bg-white border-2 border-red-600 p-2 m-2 w-3/4 rounded-lg">
+      <input
+        class="w-full focus:outline-none"
+        [(ngModel)]="longUrl"
+        placeholder="link here"
+        type="text">
+    </div>
+
+    <div class="bg-white border-2 border-red-600 p-2 m-2 w-3/4 rounded-lg">
       <span class="font-bold mr-1">http://localhost:8080/api/</span>
       <input
         [(ngModel)]="customBody"
-        class="p-1"
+        class="p-1 focus:outline-none"
         placeholder="body of url"
         type="text">
     </div>
@@ -24,7 +28,13 @@
 
   <h3 class="text-3xl text-center font-bold p-5">My Urls</h3>
   <div class="w-full min-h-[800px] flex flex-col justify-between">
+    <input
+        placeholder="search by short url..."
+        class="w-3/4 m-4 p-2"
+        [(ngModel)] = "shearchedUrl"/>
+      <button (click)="search()">buscar</button>
     @if (userUrls.length > 0) {
+
       <div class="grid grid-cols-2 gap-1">
         @for (userUrl of userUrls; track $index) {
           <app-url-card

@@ -33,7 +33,9 @@ export class UserPageComponent implements OnInit {
   longUrl?: string;
   customBody?: string;
 
-  totalUrls?: number;
+  shearchedUrl?: string;
+
+  totalUrls: number = 0;
 
   ngOnInit(): void {
     this.getUrlsByUserId(0);
@@ -51,6 +53,8 @@ export class UserPageComponent implements OnInit {
       this.urlService.shortenCustomizedUrl(customUrl).pipe().subscribe(resp => {
         if(this.userUrls.length < 10)
           this.userUrls.push(resp);
+
+        this.totalUrls++;
       });
     }
   }
@@ -80,5 +84,16 @@ export class UserPageComponent implements OnInit {
           });
         }
       });
+  }
+
+  search() {
+    if(this.shearchedUrl) {
+      console.log(this.shearchedUrl);
+
+      this.urlService.getUrlsByUserIdAndShortUrl(0,this.shearchedUrl).subscribe(res => {
+        this.userUrls = res.content
+        this.totalUrls = res.totalElements
+      })
+    }
   }
 }

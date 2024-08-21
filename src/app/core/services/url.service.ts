@@ -29,6 +29,16 @@ export class UrlService {
     return this.http.get<CustomUrlPage>(`${environment.API_URL}/api/user-urls`, { params, withCredentials: true });
   }
 
+  getUrlsByUserIdAndShortUrl(page: number, shortUrl: string) {
+
+    let params = new HttpParams()
+      .set('page', page)
+      .set('size', 10)
+      .set('shortUrl', shortUrl)
+
+    return this.http.get<CustomUrlPage>(`${environment.API_URL}/api/user-urls-by-short-url`, { params, withCredentials: true });
+  }
+
   deleteUrlById(urlId: string) {
     const params = new HttpParams().set('id', urlId);
     return this.http.delete(`${environment.API_URL}/api/delete-by-id`,{ params, withCredentials: true });

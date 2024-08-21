@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomUrlResponse } from '../../../core/interfaces/customUrl.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-url-card',
@@ -9,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     MatButtonModule,
     MatIconModule,
+    ClipboardModule,
   ],
   templateUrl: './url-card.component.html',
   styleUrl: './url-card.component.scss'
