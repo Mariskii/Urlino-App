@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { ShortUrl } from '../interfaces/shortUrl.interface';
 import { CustomUrlPage, CustomUrlRequest, CustomUrlResponse } from '../interfaces/customUrl.interface';
+import { UpdateUrl } from '../interfaces/updateUrl.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,9 @@ export class UrlService {
   deleteUrlById(urlId: string) {
     const params = new HttpParams().set('id', urlId);
     return this.http.delete(`${environment.API_URL}/api/delete-by-id`,{ params, withCredentials: true });
+  }
+
+  updateUserUrl(updateUrl: UpdateUrl) {
+    return this.http.put<CustomUrlResponse>(`${environment.API_URL}/api/update-user-url`,updateUrl,{ withCredentials: true });
   }
 }

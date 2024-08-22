@@ -13,6 +13,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
 import { catchError, of } from 'rxjs';
+import { EditUrlFormComponent } from '../../components/edit-url-form/edit-url-form.component';
+import { UpdateUrl } from '../../../core/interfaces/updateUrl.interface';
 
 @Component({
   selector: 'app-user-page',
@@ -116,6 +118,21 @@ export class UserPageComponent implements OnInit {
             const index = this.userUrls.findIndex(url => url.id === id)
             this.userUrls.splice(index, 1);
             this.totalUrls--;
+          });
+        }
+      });
+  }
+
+  showEditDialog(index: number) {
+    this.dialogConfirmation
+      .open(EditUrlFormComponent, {
+        data: this.userUrls[index]
+      })
+      .afterClosed()
+      .subscribe((updateUrl: UpdateUrl) => {
+        if (updateUrl) {
+          this.urlService.updateUserUrl(updateUrl).subscribe(res => {
+            this.userUrls[index] = res;
           });
         }
       });

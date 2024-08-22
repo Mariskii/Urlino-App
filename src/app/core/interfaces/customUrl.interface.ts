@@ -1,7 +1,8 @@
 export interface CustomUrlResponse {
   id: string,
   longUrl: string,
-  customUrl: string
+  customUrl: string,
+  customBody: string
 }
 
 export interface CustomUrlRequest {

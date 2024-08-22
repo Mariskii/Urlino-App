@@ -1,0 +1,32 @@
+<p
+  class="text-center font-bold text-2xl p-4"
+  mat-dialog-title>Edit url</p>
+
+  <div
+    mat-dialog-content>
+
+    <input
+      [(ngModel)]="longUrl"
+      placeholder="Long Url"
+      type="text">
+
+    <input
+      [(ngModel)]="customBody"
+      placeholder="Custom Url body"
+      type="text">
+
+  </div>
+
+<div
+  class="w-full flex justify-around p-3 font-bold"
+  mat-dialog-actions>
+    <button
+      class="w-1/4 border border-blue-500 p-3 rounded-xl hover:bg-gray-200"
+      mat-button
+      (click)="closeDialog()">Cancel</button>
+    <button
+      class="w-1/4 bg-blue-500 text-white hover:bg-blue-700 p-3 rounded-xl"
+      mat-button
+      (click)="confirmation()"
+      cdkFocusInitial>Confirm</button>
+</div>

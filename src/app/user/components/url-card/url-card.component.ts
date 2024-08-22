@@ -18,9 +18,14 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 export class UrlCardComponent {
   @Input() urlUser!:CustomUrlResponse;
   @Output() deleteUrl = new EventEmitter<string>();
+  @Output() editUrl = new EventEmitter<string>();
 
 
   setDeleteConfirmation() {
     this.deleteUrl.emit(this.urlUser.id);
+  }
+
+  setEditDialog() {
+    this.editUrl.emit(this.urlUser.id);
   }
 }

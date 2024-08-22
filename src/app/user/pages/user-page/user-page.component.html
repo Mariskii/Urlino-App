@@ -19,7 +19,7 @@
       <span class="font-bold mr-1">http://localhost:8080/api/</span>
       <input
         [(ngModel)]="customBody"
-        class="p-1 focus:outline-none"
+        class="p-1 focus:outline-none w-3/4"
         placeholder="custom/body/here"
         type="text">
     </div>
@@ -77,6 +77,7 @@
           @for (userUrl of userUrls; track $index) {
             <app-url-card
               (deleteUrl)="showDeleteConfirmation($event)"
+              (editUrl)="showEditDialog($index)"
               [urlUser]="userUrl"/>
           }
         </div>
