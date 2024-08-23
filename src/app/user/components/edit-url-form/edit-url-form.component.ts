@@ -46,4 +46,8 @@ export class EditUrlFormComponent implements OnInit {
 
     this.dialog.close(updateUrl);
   }
+
+  clearLongUrl() {
+    this.longUrl = '';
+  }
 }
