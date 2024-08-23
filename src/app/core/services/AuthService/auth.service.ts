@@ -16,4 +16,8 @@ export class AuthService {
   login() {
     return this.httpClient.get<any>(`${environment.API_URL}/auth/user`, { withCredentials: true });
   }
+
+  delete() {
+    this.user = undefined;
+  }
 }

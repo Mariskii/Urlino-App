@@ -54,4 +54,8 @@ export class ToolbarComponent {
 
     // })
   }
+
+  logout() {
+    this.authService.delete()
+  }
 }
