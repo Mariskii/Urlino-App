@@ -2,6 +2,7 @@
   <div class="flex justify-between">
     <p class="font-bold text-xl truncate">http://localhost:8080/{{ urlUser.customUrl }}</p>
     <button
+      mat-icon-button
       class="flex items-center"
       [cdkCopyToClipboard]="'http://localhost:8080/'+urlUser.customUrl"
       matTooltip="Copy">
