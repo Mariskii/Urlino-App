@@ -1,27 +1,36 @@
-<nav class="sticky top-0 h-fit w-full flex justify-between p-5 backdrop-blur-md z-10">
+<nav class="fixed md:sticky top-0 h-fit w-full flex justify-between p-5 backdrop-blur-md z-10">
   <img ngSrc="../../../../assets/URLINO.png" width="150" height="75" priority alt="urlino_logo">
 
-  <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3">login</a>
+  <button
+    class="md:hidden"
+    (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
 
   @if(!authService.user) {
-    <button
-      (click)="login()"
+    <a
+      href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
       class="p-3 bg-gray-950 rounded-full text-white max-h-[60px]" aria-label="Example icon-button with share icon">
     Login with Github
-  </button>
+  </a>
   } @else {
 
-    <ul class="flex items-center gap-3 font-bold">
+    <ul class="hidden md:flex items-center gap-7 font-bold">
       @for (item of navItems; track $index) {
         <li
         [routerLink]="item.router"
-        routerLinkActive="bg-red-500 "
+        routerLinkActive="bg-gray-200 rounded-xl p-2"
         class="text-3xl">{{ item.title }}</li>
       }
     </ul>
 
-    <div class="flex font-bold items-center space-x-3">
-      <p>{{ authService.user.name }}</p>
+    <li class="hidden md:flex font-bold items-center space-x-3 tex">
+      <div>
+        <p>{{ authService.user.name }}</p>
+        <button
+          class="text-base text-gray-400 font-medium underline"
+          (click)="logout()">Log out</button>
+      </div>
       <img
         class="rounded-full"
         width="60"
@@ -29,9 +38,45 @@
         priority
         [ngSrc]="authService.user.imageUrl"
         alt="user_image">
-    </div>
+    </li>
 
-    <button
-    (click)="logout()">logout</button>
+    <ul
+      [ngClass]="{'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen}"
+      class="fixed top-0 right-0 p-3 w-3/4 h-screen md:hidden flex flex-col items-center gap-3 font-bold bg-white shadow-lg transition-all	ease-in">
+
+      <li class="flex justify-around w-full font-bold items-center space-x-3 mb-4 p-3">
+        <div class="flex items-center space-x-2">
+          <p>{{ authService.user.name }}</p>
+          <img
+            class="rounded-full"
+            width="60"
+            height="60"
+            priority
+            [ngSrc]="authService.user.imageUrl"
+            alt="user_image">
+        </div>
+
+          <button
+            mat-icon-button
+            class="md:hidden flex"
+            (click)="toggleSidenav()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </li>
+
+      @for (item of navItems; track $index) {
+        <li
+        [routerLink]="item.router"
+        routerLinkActive="bg-gray-300 rounded-xl"
+        class="text-3xl w-full text-center p-3 mb-4">{{ item.title }}</li>
+      }
+
+      <li
+        class="mt-auto flex items-center p-4">
+        <mat-icon>logout</mat-icon>
+        <button
+          (click)="logout()">Log out</button>
+      </li>
+    </ul>
   }
 </nav>
