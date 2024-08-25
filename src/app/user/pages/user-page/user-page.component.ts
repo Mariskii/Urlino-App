@@ -82,7 +82,7 @@ export class UserPageComponent implements OnInit {
         this.totalUrls++;
 
         this.loadingUrl = false;
-        this.shortUrl = 'http:localhost:8080/api/'+resp.customUrl
+        this.shortUrl = 'http://localhost:8080/api/'+resp.customUrl
         this.resetText();
       });
     }

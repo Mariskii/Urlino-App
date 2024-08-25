@@ -3,7 +3,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AuthService } from '../../../core/services/AuthService/auth.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ToolbarComponent {
 
   authService = inject(AuthService);
+  router = inject(Router);
 
   isSidebarOpen = false;
 
@@ -61,7 +62,9 @@ export class ToolbarComponent {
   }
 
   logout() {
-    this.authService.delete()
+    this.authService.delete();
+    this.router.navigate(['/home']);
+    this.toggleSidenav();
   }
 
   toggleSidenav() {

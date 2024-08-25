@@ -1,16 +1,18 @@
-<nav class="fixed md:sticky top-0 h-fit w-full flex justify-between p-5 backdrop-blur-md z-10">
-  <img ngSrc="../../../../assets/URLINO.png" width="150" height="75" priority alt="urlino_logo">
+<nav class="fixed md:sticky top-0 h-fit w-full flex justify-between items-center p-5 backdrop-blur-md z-10">
+  <img
+    ngSrc="../../../../assets/URLINO.png"
+    class="w-[100px] sm:w-[150px]"
+    width="150"
+    height="75"
+    priority
+    alt="urlino_logo">
 
-  <button
-    class="md:hidden"
-    (click)="toggleSidenav()">
-    <mat-icon>menu</mat-icon>
-  </button>
+
 
   @if(!authService.user) {
     <a
       href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
-      class="p-3 bg-gray-950 rounded-full text-white max-h-[60px]" aria-label="Example icon-button with share icon">
+      class="p-3 bg-gray-950 text-xs sm:text-base rounded-full text-white max-h-[60px] text-center" aria-label="Example icon-button with share icon">
     Login with Github
   </a>
   } @else {
@@ -78,5 +80,13 @@
           (click)="logout()">Log out</button>
       </li>
     </ul>
+  }
+
+  @if (authService.user) {
+    <button
+      class="md:hidden"
+      (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
   }
 </nav>
