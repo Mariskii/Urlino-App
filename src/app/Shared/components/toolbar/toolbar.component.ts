@@ -38,29 +38,6 @@ export class ToolbarComponent {
     }
   ];
 
-  login() {
-    //window.location.href = "https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
-    this.authService.login().subscribe(user => {
-      console.log(user);
-
-      this.authService.user = {
-        id: user.id,
-        imageUrl: user.avatar_url,
-        name: user.login
-      }
-
-      console.log(this.authService.user);
-    })
-  }
-
-  user () {
-    window.location.href = "https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
-    // this.authService.getUser().subscribe(res => {
-    //   console.log(res);
-
-    // })
-  }
-
   logout() {
     this.authService.delete();
     this.router.navigate(['/home']);
