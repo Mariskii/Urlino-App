@@ -12,6 +12,8 @@ export class UrlService {
 
   constructor(private http: HttpClient) { }
 
+  cacheUrlPage?: CustomUrlPage;
+
   shorterUrl(longUrl: string) {
     const params = new HttpParams().set('url', longUrl);
     return this.http.post<ShortUrl>(`${environment.API_URL}/api/shorten`, null, { params });

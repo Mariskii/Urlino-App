@@ -56,7 +56,12 @@ export class UserPageComponent implements OnInit {
   errorMessage?: string;
 
   ngOnInit(): void {
-    this.getUrlsByUserId(0);
+    if(!this.urlService.cacheUrlPage)
+      this.getUrlsByUserId(0);
+    else {
+      this.userUrls = this.urlService.cacheUrlPage.content
+      this.totalUrls = this.urlService.cacheUrlPage.totalElements
+    }
   }
 
   shortCustomizedUrl() {
@@ -99,6 +104,7 @@ export class UserPageComponent implements OnInit {
       this.userUrls = urlsPage.content;
       this.totalUrls = urlsPage.totalElements;
       this.loadingUserUrl = false;
+      this.urlService.cacheUrlPage = urlsPage;
     });
   }
 
@@ -150,5 +156,6 @@ export class UserPageComponent implements OnInit {
   resetText() {
     this.errorMessage = '';
     this.longUrl = '';
+    this.customBody = '';
   }
 }
