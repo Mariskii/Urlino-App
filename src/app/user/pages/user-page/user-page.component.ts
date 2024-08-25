@@ -68,7 +68,7 @@ export class UserPageComponent implements OnInit {
 
   shortCustomizedUrl() {
 
-    if(this.longUrl) {
+    if(this.longUrl && !this.customBody?.includes('/')) {
       const customUrl: CustomUrlRequest = {
         customBody: this.customBody,
         longUrl: this.longUrl,
@@ -92,6 +92,8 @@ export class UserPageComponent implements OnInit {
         this.shortUrl = 'http://localhost:8080/api/'+resp.customUrl
         this.resetText();
       });
+    } else {
+      this.errorMessage = 'The character "/" is not allowed';
     }
   }
 
