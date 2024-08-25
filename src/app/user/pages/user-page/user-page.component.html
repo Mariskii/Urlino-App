@@ -66,9 +66,19 @@
           class="w-3/4 h-full text-xl mr-2 url-input border-none focus:outline-none"
           type="text">
 
-        <button
-          (click)="searchByShortUrl()"
-          class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Search</button>
+        <div class="flex">
+          @if (searchedUrl) {
+            <button
+              mat-icon-button
+              (click)="clearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+
+          <button
+            (click)="searchByShortUrl()"
+            class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Search</button>
+        </div>
       </div>
 
       @if (userUrls.length > 0) {
@@ -92,7 +102,7 @@
       } @else {
         <div class="flex flex-col gap-2 justify-center items-center p-10">
           <img ngSrc="../../../../assets/no-content.png" width="250" height="250" priority alt="no_urls_image">
-          <p class="text-2xl text-white">You dont have any url registered...</p>
+          <p class="text-2xl text-white text-center">You dont have any url registered...</p>
         </div>
       }
     </div>

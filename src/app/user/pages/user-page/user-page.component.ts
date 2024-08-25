@@ -15,6 +15,7 @@ import { LoaderComponent } from '../../../Shared/components/loader/loader.compon
 import { catchError, of } from 'rxjs';
 import { EditUrlFormComponent } from '../../components/edit-url-form/edit-url-form.component';
 import { UpdateUrl } from '../../../core/interfaces/updateUrl.interface';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-page',
@@ -29,6 +30,7 @@ import { UpdateUrl } from '../../../core/interfaces/updateUrl.interface';
     MatProgressBarModule,
     ClipboardModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
@@ -151,6 +153,11 @@ export class UserPageComponent implements OnInit {
         this.totalUrls = res.totalElements
       })
     }
+  }
+
+  clearSearch() {
+    this.searchedUrl = '';
+    this.userUrls = this.urlService.cacheUrlPage!.content;
   }
 
   resetText() {
