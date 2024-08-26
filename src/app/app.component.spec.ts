@@ -4,7 +4,7 @@ import { AuthService } from './core/services/AuthService/auth.service';
 import { of } from 'rxjs';
 import { RouterTestingModule } from "@angular/router/testing";
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
 
   const MockAuthService = {
     user: { id: 1, imageUrl: 'http://example.com/avatar.png', name: 'testuser' },
