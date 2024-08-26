@@ -20,7 +20,6 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
 
   authService = inject(AuthService);
-  cookieService = inject(CookieService);
 
   title = 'urlino-app';
 
