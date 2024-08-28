@@ -41,7 +41,7 @@ export class ToolbarComponent {
   logout() {
     this.authService.delete();
     this.router.navigate(['/home']);
-    this.toggleSidenav();
+    document.body.classList.remove('forbid-scroll');
   }
 
   toggleSidenav() {
