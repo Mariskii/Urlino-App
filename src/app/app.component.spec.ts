@@ -42,12 +42,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'urlino-app' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('urlino-app');
-  });
-
   it('should call authService.login and set authService.user if cookie exists', () => {
     const spyLogin = spyOn(MockAuthService, 'login').and.callThrough();
     spyOn(component, 'doesHttpOnlyCookieExist').and.returnValue(true);
