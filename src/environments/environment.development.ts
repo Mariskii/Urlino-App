@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'https://urlino.icu' //https://urlino.icu
+  API_URL: 'http://urlino.icu' //https://urlino.icu
 };

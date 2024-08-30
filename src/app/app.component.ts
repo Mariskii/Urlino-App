@@ -24,22 +24,23 @@ export class AppComponent implements OnInit {
   title = 'urlino-app';
 
   ngOnInit() {
+    console.log('oninit');
+
+    this.authService.login().pipe(
+      catchError(err => {
+        return of()
+      })
+    ).subscribe(user => {
+      this.authService.user = {
+        id: user.id,
+        imageUrl: user.avatar_url,
+        name: user.login
+      }
+
+      console.log(this.authService.user);
+    });
     if(this.doesHttpOnlyCookieExist('JSESSIONID')) {
-      this.authService.login().pipe(
-        catchError(err => {
-          console.log('fhuaifbiau');
 
-          return of()
-        })
-      ).subscribe(user => {
-        this.authService.user = {
-          id: user.id,
-          imageUrl: user.avatar_url,
-          name: user.login
-        }
-
-        console.log(this.authService.user);
-      });
     }
   }
 
