@@ -16,6 +16,7 @@ import { catchError, of } from 'rxjs';
 import { EditUrlFormComponent } from '../../components/edit-url-form/edit-url-form.component';
 import { UpdateUrl } from '../../../core/interfaces/updateUrl.interface';
 import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-user-page',
@@ -89,7 +90,7 @@ export class UserPageComponent implements OnInit {
         this.totalUrls++;
 
         this.loadingUrl = false;
-        this.shortUrl = 'http://localhost:8080/api/'+resp.customUrl
+        this.shortUrl = environment.API_URL+resp.customUrl
         this.resetText();
       });
     } else {

@@ -57,4 +57,18 @@ export class ToolbarComponent {
       document.body.classList.remove('forbid-scroll');
     }
   }
+
+  logi() {
+    this.authService.login().pipe(
+
+    ).subscribe(user => {
+      this.authService.user = {
+        id: user.id,
+        imageUrl: user.avatar_url,
+        name: user.login
+      }
+
+      console.log(this.authService.user);
+    });
+  }
 }

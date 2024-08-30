@@ -3,6 +3,7 @@ import { CustomUrlResponse } from '../../../core/interfaces/customUrl.interface'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-url-card',
@@ -27,5 +28,9 @@ export class UrlCardComponent {
 
   setEditDialog() {
     this.editUrl.emit(this.urlUser.id);
+  }
+
+  getShortUrl() {
+    return `${environment.API_URL}/api/${this.urlUser.customUrl}`
   }
 }

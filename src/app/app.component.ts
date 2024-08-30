@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     if(this.doesHttpOnlyCookieExist('JSESSIONID')) {
       this.authService.login().pipe(
         catchError(err => {
+          console.log('fhuaifbiau');
 
           return of()
         })
@@ -36,9 +37,11 @@ export class AppComponent implements OnInit {
           imageUrl: user.avatar_url,
           name: user.login
         }
+
+        console.log(this.authService.user);
       });
     }
-    }
+  }
 
   doesHttpOnlyCookieExist(cookiename: string) {
     var d = new Date();
