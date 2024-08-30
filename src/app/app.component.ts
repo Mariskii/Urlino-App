@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   title = 'urlino-app';
 
   ngOnInit() {
-    console.log('oninit');
+
 
     this.authService.login().pipe(
       catchError(err => {
@@ -36,20 +36,8 @@ export class AppComponent implements OnInit {
         imageUrl: user.avatar_url,
         name: user.login
       }
-
-      console.log(this.authService.user);
     });
-    if(this.doesHttpOnlyCookieExist('JSESSIONID')) {
-
-    }
   }
 
-  doesHttpOnlyCookieExist(cookiename: string) {
-    var d = new Date();
-    d.setTime(d.getTime() + (1000));
-    var expires = "expires=" + d.toUTCString();
 
-    document.cookie = cookiename + "=new_value;path=/;" + expires;
-    return document.cookie.indexOf(cookiename + '=') == -1;
-  }
 }
