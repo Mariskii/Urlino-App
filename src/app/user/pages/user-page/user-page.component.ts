@@ -54,7 +54,7 @@ export class UserPageComponent implements OnInit {
   loadingUrl: boolean = false;
   loadingUserUrl: boolean = false;
 
-  shortUrl?: string = 'hqwbiubfiuawbwsfnaiu';
+  shortUrl?: string;
 
   errorMessage?: string;
 
