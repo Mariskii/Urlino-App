@@ -54,7 +54,7 @@ export class UserPageComponent implements OnInit {
   loadingUrl: boolean = false;
   loadingUserUrl: boolean = false;
 
-  shortUrl?: string;
+  shortUrl?: string = 'hqwbiubfiuawbwsfnaiu';
 
   errorMessage?: string;
 
@@ -90,7 +90,7 @@ export class UserPageComponent implements OnInit {
         this.totalUrls++;
 
         this.loadingUrl = false;
-        this.shortUrl = environment.API_URL+resp.customUrl
+        this.shortUrl = environment.API_URL+'/api/'+resp.customUrl
         this.resetText();
       });
     } else {

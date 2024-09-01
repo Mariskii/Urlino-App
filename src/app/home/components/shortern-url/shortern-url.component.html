@@ -28,12 +28,12 @@
   }
 
   @if (shortUrl) {
-    <div class="text-xl p-4">
+    <div class="w-full flex flex-col items-center text-xl p-4">
       <p class="mb-2">Your newly shortened URL:</p>
-      <div class="flex items-center w-[500px] h-[45px] p-2 justify-between border border-gray-400 rounded-2xl">
-        <p>{{ shortUrl }}</p>
+      <div class="flex items-center w-full md:w-[500px] h-[45px] p-2 justify-between border border-gray-400 rounded-2xl">
+        <p class="truncate">{{ shortUrl }}</p>
         <button
-          class="flex items-center"
+          class="flex items-center relative"
           [cdkCopyToClipboard]="shortUrl"
           matTooltip="Copy">
           <mat-icon>content_copy</mat-icon>
