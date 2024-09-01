@@ -21,8 +21,8 @@
       @for (item of navItems; track $index) {
         <li
         [routerLink]="item.router"
-        routerLinkActive="bg-gray-200 rounded-xl p-2"
-        class="text-3xl">{{ item.title }}</li>
+        routerLinkActive="bg-gray-200 rounded-xl p-2 cursor-default"
+        class="text-3xl  cursor-pointer">{{ item.title }}</li>
       }
     </ul>
 
@@ -68,9 +68,9 @@
 
       @for (item of navItems; track $index) {
         <li
-        [routerLink]="item.router"
-        routerLinkActive="bg-gray-300 rounded-xl"
-        class="text-3xl w-full text-center p-3 mb-4 cursor-pointer">{{ item.title }}</li>
+          [routerLink]="item.router"
+          routerLinkActive="bg-gray-300 rounded-xl"
+          class="text-3xl w-full text-center p-3 mb-4">{{ item.title }}</li>.
       }
 
       <li
