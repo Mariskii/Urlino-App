@@ -23,11 +23,13 @@ export class AppComponent implements OnInit {
 
   title = 'urlino-app';
 
+  loadingUser:boolean = true;
+
   ngOnInit() {
-
-
+    this.loadingUser = true;
     this.authService.login().pipe(
       catchError(err => {
+        this.loadingUser = false;
         return of()
       })
     ).subscribe(user => {
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit {
         imageUrl: user.avatar_url,
         name: user.login
       }
+      this.loadingUser = false;
     });
   }
 

@@ -8,13 +8,21 @@
     alt="urlino_logo">
 
 
-
   @if(!authService.user) {
-    <a
-      href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
-      class="p-3 bg-gray-950 text-xs sm:text-base rounded-full text-white max-h-[60px] text-center" aria-label="Example icon-button with share icon">
-    Login with Github
-  </a>
+    @if(loadingUser) {
+      <div
+        class="flex items-center justify-center p-3 bg-gray-950 text-xs sm:text-base rounded-full text-white max-h-[60px] w-[100px] text-center">
+        <img
+          src="../../../../assets/userLoader.svg" alt="user_loader"
+          class="w-[40px] h-[40px]">
+      </div>
+    } @else {
+      <a
+          href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
+          class="p-3 bg-gray-950 text-xs sm:text-base rounded-full text-white max-h-[60px] text-center" aria-label="Example icon-button with share icon">
+        Login with Github
+      </a>
+    }
   } @else {
 
     <ul class="hidden md:flex items-center gap-7 font-bold">

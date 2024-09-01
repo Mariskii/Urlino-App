@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ToolbarComponent {
 
+  @Input() loadingUser!:boolean;
   authService = inject(AuthService);
   router = inject(Router);
 
@@ -59,9 +60,7 @@ export class ToolbarComponent {
   }
 
   logi() {
-    this.authService.login().pipe(
-
-    ).subscribe(user => {
+    this.authService.login().subscribe(user => {
       this.authService.user = {
         id: user.id,
         imageUrl: user.avatar_url,
