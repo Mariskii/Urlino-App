@@ -1,27 +1,40 @@
-# UrlinoApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
+# Urlino App
 
-## Development server
+Urlino app is an URL shortener build with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1 and Spring. This is the frontend of the project. The app allows the users to shorten any URL and if the user logins with the OAuth2 of github he will be able to create and save custom URLs in his account.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![showcase_urlino-01 png](https://github.com/user-attachments/assets/3a2a95a8-bb3c-4bfc-bd66-641e434adc54)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install Urlino-app:
 
-## Build
+```bash
+  git clone https://github.com/usuario/urlino-app.git
+  cd urlino-app
+  npm install
+```
+    
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To execute the app:
 
-## Running unit tests
+```javascript
+ng serve
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Then, navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.
+## Running Tests
 
-## Running end-to-end tests
+To execute the unit tests via [Karma](https://karma-runner.github.io), run the following command
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+  ng test --code-coverage
+```
 
-## Further help
+Run ng `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Authors
+
+- [@Mariskii](https://www.github.com/Mariskii)
+
