@@ -17,6 +17,7 @@ import { EditUrlFormComponent } from '../../components/edit-url-form/edit-url-fo
 import { UpdateUrl } from '../../../core/interfaces/updateUrl.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { environment } from '../../../../environments/environment.development';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-page',
@@ -32,6 +33,7 @@ import { environment } from '../../../../environments/environment.development';
     ClipboardModule,
     MatIconModule,
     MatButtonModule,
+    TranslateModule,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'

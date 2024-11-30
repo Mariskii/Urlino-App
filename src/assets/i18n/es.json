@@ -1,0 +1,42 @@
+{
+  "TITLE": "Acortador de URLs",
+  "SUBTITLE": "Simplifica tus URLs",
+  "GITHUB-LOGIN":"Login con Github",
+  "LOGOUT":"Cerrar sesión",
+  "FEATURES" : {
+    "FEATURE-1": "Acorta tu URL gratis",
+    "FEATURE-2": "Guarda tus URLs creando una cuenta",
+    "FEATURE-3": "Login con tu cuenta de Github"
+  },
+  "SHORT-URL" : {
+    "TITLE": "Como acortar tu URL?",
+    "EXPLANATION": "Simplemente pega tu URL larga en el cuadro de texto y haz clic en \"Acortar\". Obtendrás un enlace corto en segundos.",
+    "SHORTEN-BUTTON": "Acortar",
+    "RESULT": "Tu URL acortada:"
+  },
+  "ADVANTAGES" : {
+    "TITLE": "Por que usar URLs cortas?",
+    "ADVANTAGE-1" : {
+      "TITLE" : "Mejora experiencia de usuario",
+      "EXPLANATION" : "Las URLs acortadas son más fáciles de recordar y escribir, lo cual es especialmente útil para campañas de marketing y para compartir enlaces donde el espacio es limitado. Su formato conciso ayuda a garantizar que los enlaces se ajusten bien en publicaciones de redes sociales, mensajes de texto y otros espacios restringidos, además de mejorar la experiencia del usuario al hacer que las URLs sean más manejables y visualmente atractivas."
+    },
+    "ADVANTAGE-2" : {
+      "TITLE" : "Mejora visual",
+      "EXPLANATION" : "Las URLs acortadas son más fáciles de recordar y escribir, lo que resulta beneficioso para campañas de marketing y para compartir enlaces en contextos con espacio limitado. Facilitan la inclusión de enlaces en publicaciones de redes sociales, mensajes de texto y otros espacios restringidos, mejorando tanto la usabilidad como el atractivo visual."
+    },
+    "ADVANTAGE-3" : {
+      "TITLE" : "Fácil de compartir",
+      "EXPLANATION" : "Las URLs largas y complejas pueden ser difíciles de compartir, especialmente en plataformas con límites de caracteres como Twitter. Las URLs acortadas ofrecen una alternativa más sencilla, facilitando su inclusión en mensajes y publicaciones. Su brevedad no solo ayuda a cumplir con las restricciones de caracteres, sino que también mejora la legibilidad y reduce la probabilidad de errores al escribir o copiar enlaces."
+    }
+  },
+  "USER" : {
+    "WELCOME": "Bienvenido",
+    "CUSTOM-URL-TITLE": "Quieres crear una url?",
+    "NO-URLS-MESSAGE": "No tienes ninguna URL...",
+    "SEARCH-BUTTON": "Buscar"
+  },
+  "MENU" : {
+    "HOME": "Inicio",
+    "MY-URLS": "Mis Urls"
+  }
+}

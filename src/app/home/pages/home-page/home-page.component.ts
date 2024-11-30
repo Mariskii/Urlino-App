@@ -1,16 +1,14 @@
-import { NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { ShorternUrlComponent } from '../../components/shortern-url/shortern-url.component';
 import { AdvantagesComponent } from '../../components/advantages/advantages.component';
-import { AuthService } from '../../../core/services/AuthService/auth.service';
-import { catchError, of } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [
-    NgOptimizedImage,
+    TranslateModule,
     MatIconModule,
     ShorternUrlComponent,
     AdvantagesComponent,
@@ -23,9 +21,9 @@ export class HomePageComponent {
 //  authService = inject(AuthService);
 
   features: string[] = [
-    'Generate a shortern Url Free',
-    'Save your urls creating an account',
-    'Login with your Github account'
+    'FEATURES.FEATURE-1',
+    'FEATURES.FEATURE-2',
+    'FEATURES.FEATURE-3'
   ];
 
   // ngOnInit(): void {

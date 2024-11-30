@@ -20,7 +20,7 @@
       <a
           href="https://github.com/login/oauth/authorize?response_type=code&client_id=Ov23li7poBd2GA4Invx3"
           class="p-3 bg-gray-950 text-xs sm:text-base rounded-full text-white max-h-[60px] text-center" aria-label="Example icon-button with share icon">
-        Login with Github
+        {{ 'GITHUB-LOGIN' | translate }}
       </a>
     }
   } @else {
@@ -30,7 +30,7 @@
         <li
         [routerLink]="item.router"
         routerLinkActive="bg-gray-200 rounded-xl p-2 cursor-default"
-        class="text-3xl  cursor-pointer">{{ item.title }}</li>
+        class="text-3xl  cursor-pointer">{{ item.title | translate }}</li>
       }
     </ul>
 
@@ -39,7 +39,7 @@
         <p>{{ authService.user.name }}</p>
         <button
           class="text-base text-gray-400 font-medium underline"
-          (click)="logout()">Log out</button>
+          (click)="logout()">{{ 'LOGOUT' | translate }}</button>
       </div>
       <img
         class="rounded-full"
@@ -78,14 +78,14 @@
         <li
           [routerLink]="item.router"
           routerLinkActive="bg-gray-300 rounded-xl"
-          class="text-3xl w-full text-center p-3 mb-4">{{ item.title }}</li>
+          class="text-3xl w-full text-center p-3 mb-4">{{ item.title | translate }}</li>
       }
 
       <li
         class="mt-auto flex items-center p-4">
         <mat-icon>logout</mat-icon>
         <button
-          (click)="logout()">Log out</button>
+          (click)="logout()">{{ 'LOGOUT' | translate }}</button>
       </li>
     </ul>
   }

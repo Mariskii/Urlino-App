@@ -1,7 +1,7 @@
 <div class="w-full h-full mt-20 md:mt-0">
-  <h2 class="w-full text-center text-5xl font-bold p-10 text-white">Welcome back {{ authService.user?.name }}!</h2>
+  <h2 class="w-full text-center text-5xl font-bold p-10 text-white">{{ 'USER.WELCOME' | translate }} {{ authService.user?.name }}!</h2>
 
-  <h3 class="text-center text-3xl text-gray-300">Want to create a custom url?</h3>
+  <h3 class="text-center text-3xl text-gray-300">{{ 'USER.CUSTOM-URL-TITLE' | translate }}</h3>
   <div class="w-full p-10 flex flex-col justify-center items-center gap-3">
 
     @if (errorMessage) {
@@ -26,7 +26,7 @@
 
     <button
       class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl mb-5"
-      (click)="shortCustomizedUrl()">Shortern</button>
+      (click)="shortCustomizedUrl()">{{ 'SHORT-URL.SHORTEN-BUTTON' | translate }}</button>
 
       @if (loadingUrl) {
         <app-loader/>
@@ -48,7 +48,7 @@
 
   </div>
 
-  <h3 class="text-4xl text-center font-bold p-5 text-white">My Urls ({{ totalUrls }} stored)</h3>
+  <h3 class="text-4xl text-center font-bold p-5 text-white">Urls: {{ totalUrls }}</h3>
   @if(loadingUserUrl) {
     <div class="w-full flex justify-center">
       <img
@@ -77,7 +77,7 @@
 
           <button
             (click)="searchByShortUrl()"
-            class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">Search</button>
+            class="bg-red-400 hover:bg-red-500 h-[45px] text-white p-2 rounded-2xl">{{ 'USER.SEARCH-BUTTON' | translate }}</button>
         </div>
       </div>
 
@@ -102,7 +102,7 @@
       } @else {
         <div class="flex flex-col gap-2 justify-center items-center p-10">
           <img ngSrc="../../../../assets/no-content.png" width="250" height="250" priority alt="no_urls_image">
-          <p class="text-2xl text-white text-center">You dont have any url registered...</p>
+          <p class="text-2xl text-white text-center">{{ 'USER.NO-URLS-MESSAGE' | translate }}</p>
         </div>
       }
     </div>

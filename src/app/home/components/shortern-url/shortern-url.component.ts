@@ -9,6 +9,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { environment } from '../../../../environments/environment.development';
 import { LoaderComponent } from '../../../Shared/components/loader/loader.component';
 import { catchError, of } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-shortern-url',
@@ -20,6 +21,7 @@ import { catchError, of } from 'rxjs';
     MatIconModule,
     MatTooltipModule,
     MatProgressBarModule,
+    TranslateModule,
   ],
   templateUrl: './shortern-url.component.html',
   styleUrl: './shortern-url.component.scss'

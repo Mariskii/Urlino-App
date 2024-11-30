@@ -5,6 +5,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AuthService } from '../../../core/services/AuthService/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     NgOptimizedImage,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
@@ -30,11 +32,11 @@ export class ToolbarComponent {
 
   navItems = [
     {
-      title: 'Home',
+      title: 'MENU.HOME',
       router: '/home'
     },
     {
-      title: 'My Urls',
+      title: 'MENU.MY-URLS',
       router: '/user'
     }
   ];
