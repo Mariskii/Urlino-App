@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/AuthService/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
+import { GithubIcon } from '../../../../assets/icons/github-icon.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,6 +19,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     MatButtonModule,
     TranslateModule,
+    GithubIcon,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
